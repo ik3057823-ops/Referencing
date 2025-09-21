@@ -152,6 +152,39 @@
     .rail .group::before{ content:"" !important; display:block !important; position:absolute; left:12px; top:-40px; bottom:-40px; border-left:3px dashed #cbd5e1 !important; }
       /* Undo avatar dotted square + connectors */
     .person::before, .person::after{ content:none !important; display:none !important; }
+      /* ===================== Responsive fixes ===================== */
+    /* Make layout stack, reset manual offsets that break small screens, and enable tab scrolling */
+    @media (max-width: 1024px){
+      .stage{ grid-template-columns: 1fr; border-radius:12px }
+      .left{ padding:16px }
+      .right{ padding:12px }
+
+      /* Reset earlier manual nudges so content flows naturally on smaller screens */
+      .left > :not(.handbook){ transform:none !important; }
+      .person{ top:0; margin-left:0 }
+      .rail{ left:0 !important; top:0 !important; margin-top:12px; transform:none !important; }
+      .rail .group{ padding-left:16px }
+
+      /* Tablet/browser mock scales to container width */
+      .tablet{ width:100%; aspect-ratio: 4 / 3 }
+      .tabsbar{ overflow-x:auto; gap:6px }
+      .c-tab{ flex:0 0 auto; min-width:120px }
+
+      /* Images and panels fit nicely */
+      .panel{ padding:8px }
+      .panel img{ max-width:100%; max-height:100%; }
+
+      /* Move Handbook into flow to avoid overlap at very small heights */
+      .handbook{ position:static; margin-top:16px }
+    }
+
+    @media (max-width: 640px){
+      .chip{ width:auto; padding:10px 12px }
+      .name{ font-size:18px }
+      .tabbar, .tabsbar{ height:auto }
+      .omnibox{ height:28px }
+      .btn{ width:26px; height:26px }
+    }
   </style>
 </head>
 <body>
